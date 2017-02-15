@@ -89,4 +89,54 @@ public class MyStingySlot {
     	return winnings;
 
 	}
+	
+	
+	
+	// David's Payoff Function, there are some errors!!
+	public double myPayoff(){
+		double result = 0.0;
+		int sameCounter = 0;
+		
+		// For loop to count number of same numbers in the spin
+		for (int i = 0; i < 4; i++){
+			if (theSpin[i] == theSpin[i+1])
+				sameCounter++;
+		}
+		
+		if (sameCounter == 5){
+			result += 1000000;
+		}
+		else if (sameCounter == 4){
+			result += 10000;
+		}
+		else if (sameCounter == 3){
+			result += 500;
+		}
+		
+		// For loop to add 17 cents for each %17 in the spin
+		for (int i = 0; i < 5; i++){
+			if (theSpin[i]%17 == 0){
+				result += .17;
+			}
+		}
+		
+		// For loop to add 10 cents for each perfect square in the spin
+		for (int i = 0; i < 5; i++){
+			if (theSpin[i]%theSpin[i] == 0){
+				result += .10;
+			}
+		}
+		
+		// For loop to add 35 cents for each 42 in the spin
+		for (int i = 0; i < 5; i++){
+			if (theSpin[i] == 42){
+				result += .35;
+			}
+		}
+		
+		
+		
+		
+		return result;
+	}
 }
